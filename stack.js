@@ -13,7 +13,6 @@ class Node {
 class Stack {
   constructor() {
     this.first = null;
-    this.last = null;
     this.size = 0;
   }
 
@@ -23,13 +22,8 @@ class Stack {
     // Create new Node to store value
     const newItem = new Node(val);
 
-    if (!this.first) {
-      this.first = newItem;
-      this.last = newItem;
-    } else {
-      newItem.next = this.first;
-      this.first = newItem;
-    }
+    newItem.next = this.first;
+    this.first = newItem;
 
     this.size++;
   }
@@ -41,13 +35,8 @@ class Stack {
     if (!this.first) throw new Error("Error: The stack is empty.");
 
     const removeItem = this.first;
-
     this.first = this.first.next;
     this.size--;
-
-    if (this.size === 1) {
-      this.last = null;
-    }
 
     return removeItem.val;
   }
